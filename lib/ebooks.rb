@@ -3,6 +3,7 @@ require 'thread'
 require 'csv'
 require 'twitter'
 require 'marky_markov'
+require 'yaml'
 
 $:.unshift(File.dirname(__FILE__))
 
@@ -12,6 +13,11 @@ require 'ebooks/core_ext'
 module Ebooks
   autoload :Generator, 'ebooks/generator'
   autoload :Twitter,   'ebooks/twitter'
+
+  def self.read_config_file(file = '~/.ebooks')
+    contents = File.read(file.sub('~', ENV["HOME"]))
+    YAML.load(contents)
+  end
 
   def self.configuration(overrides = {})
     {
@@ -29,12 +35,9 @@ module Ebooks
 
   def self.generate(overrides = {})
     config = self.configuration(overrides)
+    generator = Ebooks::Generator.new(config)
 
-    unless File.exists?(config[:tweets_csv_path])
-      Ebooks::Generator.generate_twitter_corpus(config)
-    end
-
-    Ebooks::Generator.generate_sentence(config)
+    generator.generate_sentence
   end
 
   def self.tweet(overrides = {})
