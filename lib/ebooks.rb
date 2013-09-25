@@ -7,5 +7,15 @@ require 'twitter'
 require 'marky_markov'
 
 module Ebooks
-  # Your code goes here...
+  autoload :Generator, 'ebooks/generator'
+  autoload :Twitter,   'ebooks/twitter'
+
+  def self.configuration(overrides = {})
+
+  end
+
+  def self.generate(config = {})
+    config = self.configuration(config)
+
+  end
 end

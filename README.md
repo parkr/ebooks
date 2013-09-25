@@ -1,6 +1,6 @@
 # Ebooks
 
-TODO: Write a gem description
+Generate your own horse_ebooks by @busterbenson and compiled as a gem by @parkr
 
 ## Installation
 
