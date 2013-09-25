@@ -16,9 +16,50 @@ Or install it yourself as:
 
     $ gem install ebooks
 
+## Configuration
+
+The `ebooks` executable and `Ebooks.read_config_file` will load in a yaml file
+(`~/.ebooks` by default) if you want to set your own defaults.
+
+Here are the gem's defaults:
+
+```yaml
+:tweets_csv_path: 'tweets.csv'
+:corpus_path:     'markov_dict.txt'
+:dictionary_name: 'dictionary'
+:twitter:
+  :consumer_key: ''
+  :consumer_secret: ''
+  :oauth_token: ''
+  :oauth_token_secret: ''
+```
+
 ## Usage
 
-TODO: Write usage instructions here
+As an API:
+
+```ruby
+config = Ebooks.configuration(my_overrides)
+
+# Generate a sentence and return it
+Ebooks.generate(config)
+
+# Generate sentence and tweet it
+Ebooks.tweet(config)
+
+# Just tweet a sentence
+Ebooks::Twitter.new(config[:twitter]).tweet(my_sentence)
+```
+
+As an executable:
+
+```bash
+# To generate a new horse_ebooks sentence:
+ebooks generate
+
+# To generate a new sentence and tweet it:
+ebooks tweet
+```
 
 ## Contributing
 
