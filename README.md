@@ -1,6 +1,11 @@
 # Ebooks
 
-Generate your own horse_ebooks by @busterbenson and compiled as a gem by @parkr
+Generate your own horse_ebooks by [@busterbenson][] ([original gist][], [blog post][]) and compiled as a gem by [@parkr][]
+
+[@busterbenson]: http://wayoftheduck.com/
+[original gist]: https://gist.github.com/busterbenson/6695350
+[blog post]: http://wayoftheduck.com/diy-horse-ebooks
+[@parkr]: https://parkermoo.re
 
 ## Installation
 
