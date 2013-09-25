@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Ebooks::VERSION
   spec.authors       = ["Parker Moore"]
   spec.email         = ["parkrmoore@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Generate your own horse_ebooks for fun and for profit}
+  spec.summary       = %q{horse_ebooks with and without twitter}
+  spec.homepage      = "https://github.com/parkr/ebooks"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
