@@ -1,7 +1,10 @@
 module Ebooks
   module Generator
 
-    def self.generate_twitter_corpus(tweets_csv_path = 'tweets.csv', corpus_path = 'markov_dict.txt')
+    def self.generate_twitter_corpus(config)
+      tweets_csv_path = config[:tweets_csv_path]
+      corpus_path     = config[:corpus_path]
+
       # Go to Twitter.com -> Settings -> Download Archive.
       # This tweets.csv file is in the top directory. Put it in the same directory as this script.
       csv_text = CSV.parse(File.read(tweets_csv_path))
@@ -17,7 +20,10 @@ module Ebooks
       end
     end
 
-    def self.generate_sentence(corpus_path = 'markov_dict.txt')
+    def self.generate_sentence(config)
+      corpus_path     = config[:corpus_path]
+      dictionary_name = config[:dictionary_path].gsub(/\.mmd$/, '')
+
       # Run when you want to generate a new Markov tweet
       markov = MarkyMarkov::Dictionary.new('dictionary') # Saves/opens dictionary.mmd
       markov.parse_file(corpus_path)
