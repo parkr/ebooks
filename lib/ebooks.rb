@@ -17,6 +17,7 @@ module Ebooks
     {
       :tweets_csv_path => 'tweets.csv',
       :corpus_path     => 'markov_dict.txt',
+      :dictionary_name => 'dictionary', # don't include the .mmd
       :twitter => {
         :consumer_key       => '',
         :consumer_secret    => '',
