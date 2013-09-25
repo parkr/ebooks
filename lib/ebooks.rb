@@ -45,6 +45,6 @@ module Ebooks
 
     sentence = self.generate(overrides)
 
-    Ebooks::Twitter.new(config).tweet(sentence)
+    Ebooks::Twitter.new(config[:twitter]).tweet(sentence)
   end
 end
