@@ -14,7 +14,7 @@ module Ebooks
     def generate_twitter_corpus
       # Go to Twitter.com -> Settings -> Download Archive.
       # This tweets.csv file is in the top directory. Put it in the same directory as this script.
-      csv_text = CSV.read(@tweets_csv_path))
+      csv_text = CSV.read(@tweets_csv_path)
 
       # Create a new clean file of text that acts as the seed for your Markov chains
       File.open(@corpus_path, 'w') do |file|
