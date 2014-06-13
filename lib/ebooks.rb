@@ -14,37 +14,37 @@ module Ebooks
   autoload :Generator, 'ebooks/generator'
   autoload :Twitter,   'ebooks/twitter'
 
-  def self.read_config_file(file = '~/.ebooks')
-    contents = File.read(file.sub('~', ENV["HOME"]))
-    YAML.load(contents)
-  end
+  class << self
+    def read_config_file(file = '~/.ebooks')
+      contents = File.read(file.sub('~', ENV["HOME"]))
+      YAML.load(contents)
+    end
 
-  def self.configuration(overrides = {})
-    {
-      :tweets_csv_path => 'tweets.csv',
-      :corpus_path     => 'markov_dict.txt',
-      :dictionary_name => 'dictionary', # don't include the .mmd
-      :twitter => {
+    def configuration(overrides = {})
+      {
+        :tweets_csv_path => 'tweets.csv',
+        :corpus_path     => 'markov_dict.txt',
+        :dictionary_name => 'dictionary', # don't include the .mmd
+        :twitter => {
         :consumer_key       => '',
         :consumer_secret    => '',
         :oauth_token        => '',
         :oauth_token_secret => ''
       }
-    }.deep_merge(overrides)
+      }.deep_merge(overrides)
+    end
+
+    def generate(overrides = {})
+      config = configuration(overrides)
+      generator = Ebooks::Generator.new(config)
+
+      generator.generate_sentence
+    end
+
+    def tweet(overrides = {})
+      config = configuration(overrides)
+      Ebooks::Twitter.new(config[:twitter]).tweet(generate(overrides))
+    end
   end
 
-  def self.generate(overrides = {})
-    config = self.configuration(overrides)
-    generator = Ebooks::Generator.new(config)
-
-    generator.generate_sentence
-  end
-
-  def self.tweet(overrides = {})
-    config = self.configuration(overrides)
-
-    sentence = self.generate(overrides)
-
-    Ebooks::Twitter.new(config[:twitter]).tweet(sentence)
-  end
 end
