@@ -26,11 +26,11 @@ module Ebooks
         :corpus_path     => 'markov_dict.txt',
         :dictionary_name => 'dictionary', # don't include the .mmd
         :twitter => {
-        :consumer_key       => '',
-        :consumer_secret    => '',
-        :oauth_token        => '',
-        :oauth_token_secret => ''
-      }
+          :consumer_key       => '',
+          :consumer_secret    => '',
+          :oauth_token        => '',
+          :oauth_token_secret => ''
+        }
       }.deep_merge(overrides)
     end
 
