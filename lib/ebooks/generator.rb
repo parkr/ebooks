@@ -20,7 +20,11 @@ module Ebooks
       File.open(@corpus_path, 'w') do |file|
         csv_text.reverse_each do |row|
           # Strip links, new lines and usernames
-          tweet_text = row[5].gsub(/(?:f|ht)tps?:\/[^\s]+/, '').gsub(/\n/,' ').gsub(/@[a-z0-9_]+/, '')
+          tweet_text = row[5]
+                        .gsub(/(?:f|ht)tps?:\/[^\s]+/, '')
+                        .gsub(/\n/,' ')
+                        .gsub(/@[a-z0-9_]+/, '')
+                        .gsub(/[R|M]T/, '')
           # Save the text
           file.write("#{tweet_text}\n")
         end
