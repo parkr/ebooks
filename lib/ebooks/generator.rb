@@ -23,7 +23,7 @@ module Ebooks
           tweet_text = row[5]
                         .gsub(/(?:f|ht)tps?:\/[^\s]+/, '')
                         .gsub(/\n/,' ')
-                        .gsub(/@[a-z0-9_]+/, '')
+                        .gsub(/@[a-z0-9_]+/i, '')
                         .gsub(/[R|M]T/, '')
           # Save the text
           file.write("#{tweet_text}\n")
