@@ -19,12 +19,11 @@ module Ebooks
       # Create a new clean file of text that acts as the seed for your Markov chains
       File.open(@corpus_path, 'w') do |file|
         csv_text.reverse_each do |row|
-          # Strip links, new lines, usernames and manual RTs
           tweet_text = row[5]
-                        .gsub(/(?:f|ht)tps?:\/[^\s]+/, '')
-                        .gsub(/\n/,' ')
-                        .gsub(/@[a-z0-9_]+/i, '')
-                        .gsub(/[R|M]T/, '')
+                        .gsub(/(?:f|ht)tps?:\/[^\s]+/, '') # Strip links
+                        .gsub(/\n/,' ') # Strip new lines
+                        .gsub(/@[a-z0-9_]+/i, '') # Strip usernames
+                        .gsub(/[R|M]T/, '') # Strip RTs
           # Save the text
           file.write("#{tweet_text}\n")
         end
