@@ -18,7 +18,7 @@ module Ebooks
     end
 
     def tweet(tweet_text)
-      tweet_text = truncate tweet_text.gsub('@', '')
+      tweet_text = Ebooks.truncate tweet_text.gsub('@', '')
       p "#{Time.now}: #{tweet_text}"
       twitter_client.update(tweet_text)
     end
