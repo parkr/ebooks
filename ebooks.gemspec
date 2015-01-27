@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "thread", "~> 0.1"
   spec.add_runtime_dependency "twitter", "~> 5.0"
   spec.add_runtime_dependency "marky_markov", "~> 0.3"
+  spec.add_runtime_dependency "thor", "~> 0.19"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
