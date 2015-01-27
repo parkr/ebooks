@@ -1,6 +1,7 @@
 ## HEAD
 
   * Truncate more nicely (#5)
+  * Setup Travis integration (#6)
 
 ## 0.2.1 / 2015-01-24
 
