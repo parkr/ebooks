@@ -12,7 +12,7 @@ module Ebooks
     method_option :config, :aliases => '-c', :desc => 'Specify config file'
     def generate
       g = Generator.new options[:config]
-      puts 'words words words'
+      puts g.generate_sentence
     end
   end
 end

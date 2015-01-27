@@ -1,4 +1,9 @@
 Before '@config' do
   FileUtils.mkdir_p "tmp/aruba/config/"
-  FileUtils.cp "#{$config_dir}/ebooks", "tmp/aruba/config/"
+  FileUtils.cp "#{$fixtures}/config/ebooks", "tmp/aruba/config/"
+end
+
+Before '@corpus' do
+  FileUtils.mkdir_p "tmp/aruba/cukes/ebooks/"
+  FileUtils.cp "#{$fixtures}/tweets.csv", "tmp/aruba/cukes/ebooks/"
 end
