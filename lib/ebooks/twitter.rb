@@ -18,9 +18,34 @@ module Ebooks
     end
 
     def tweet(tweet_text)
-      tweet_text = tweet_text.gsub('@', '')[0..139]
+      tweet_text = Ebooks.truncate tweet_text.gsub('@', '')
       p "#{Time.now}: #{tweet_text}"
       twitter_client.update(tweet_text)
     end
+  end
+
+  def self.truncate text, limit = 140
+    return_text = ''
+    text.split.each do |word|
+      new_text = "#{return_text} #{word}".strip
+      if new_text.length > limit
+        return trimmer return_text
+      else
+        return_text = new_text
+      end
+    end
+
+    trimmer return_text
+  end
+
+  def self.trimmer text
+    final_char = text[-1]
+    punctuation = [',']
+
+    if punctuation.include? final_char
+      return text[0..-2]
+    end
+
+    text
   end
 end
