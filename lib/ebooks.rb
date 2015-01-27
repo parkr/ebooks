@@ -4,6 +4,7 @@ require 'csv'
 require 'twitter'
 require 'marky_markov'
 require 'yaml'
+require 'thor'
 
 $:.unshift(File.dirname(__FILE__))
 
