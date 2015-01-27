@@ -11,6 +11,7 @@ module Ebooks
     desc 'generate', 'Generate a tweet'
     method_option :config, :aliases => '-c', :desc => 'Specify config file'
     def generate
+      g = Generator.new options[:config]
       puts 'words words words'
     end
   end

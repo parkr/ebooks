@@ -17,7 +17,8 @@ module Ebooks
 
   class << self
     def read_config_file(file = '~/.ebooks')
-      contents = File.read(file.sub('~', ENV["HOME"]))
+#      contents = File.read(file.sub('~', ENV["HOME"]))
+      contents = File.read(file)
       YAML.load(contents)
     end
 

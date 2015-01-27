@@ -3,7 +3,9 @@ module Ebooks
 
     attr_accessor :dictionary
 
-    def initialize(config)
+    def initialize(config_file = '~/.ebooks')
+      config = Ebooks.read_config_file config_file
+      
       @tweets_csv_path = config[:tweets_csv_path]
       @corpus_path     = config[:corpus_path]
       build_corpus
