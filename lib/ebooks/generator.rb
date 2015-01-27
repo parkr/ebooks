@@ -4,12 +4,12 @@ module Ebooks
     attr_accessor :dictionary
 
     def initialize(config_file = '~/.ebooks')
-      config = Ebooks.read_config_file config_file
+      @config = Ebooks.read_config_file config_file
 
-      @tweets_csv_path = config[:tweets_csv_path]
-      @corpus_path     = config[:corpus_path]
+      @tweets_csv_path = @config[:tweets_csv_path]
+      @corpus_path     = @config[:corpus_path]
       build_corpus
-      @dictionary_name = config[:dictionary_name]
+      @dictionary_name = @config[:dictionary_name]
       @dictionary      = build_dictionary
     end
 
@@ -35,6 +35,14 @@ module Ebooks
     def generate_sentence
       # Run when you want to generate a new Markov tweet
       dictionary.generate_n_sentences(2).split(/\#\</).first.chomp.chop
+    end
+
+    def tweet
+      Ebooks::Twitter.new(@config[:twitter]).tweet(generate_sentence)
+    end
+
+    def to_s
+      generate_sentence
     end
 
     private
