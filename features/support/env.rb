@@ -1,4 +1,5 @@
 require 'aruba/cucumber'
+require 'cucumber/rspec/doubles'
 require 'timecop'
 
 require 'ebooks'
