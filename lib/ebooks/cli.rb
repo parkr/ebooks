@@ -6,5 +6,12 @@ module Ebooks
     def version
       puts "ebooks version #{VERSION}"
     end
+    map %w(-v --version) => :version
+
+    desc 'generate', 'Generate a tweet'
+    method_option :config, :aliases => '-c', :desc => 'Specify config file'
+    def generate
+      puts 'words words words'
+    end
   end
 end
