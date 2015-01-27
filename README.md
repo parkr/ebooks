@@ -7,6 +7,8 @@ Generate your own horse_ebooks by [@busterbenson][] ([original gist][], [blog po
 [blog post]: http://wayoftheduck.com/diy-horse-ebooks
 [@parkr]: https://parkermoo.re
 
+[![Build Status](https://travis-ci.org/parkr/ebooks.svg?branch=master)](https://travis-ci.org/parkr/ebooks)
+
 ## Installation
 
 Add this line to your application's Gemfile:
