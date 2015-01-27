@@ -1,3 +1,7 @@
+## HEAD
+
+  * Truncate more nicely (#5)
+
 ## 0.2.1 / 2015-01-24
 
   * Remove usernames and manual RTs (#4)
