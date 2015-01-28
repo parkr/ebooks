@@ -1,10 +1,8 @@
 Given /^I authenticate to Twitter$/ do
-  twitter_client = double('twitter_client')
-  expect(::Twitter::REST::Client.new).to(receive(:any)).and_return(twitter_client)
+  @tc = double 'twitter_client'
+  allow(::Twitter::REST::Client).to(receive(:new)).and_return @tc
 end
 
-And /^I have a Twitter client$/ do
-  twitter_client = double('twitter_client')
-  allow(::Twitter::REST::Client.new).to(receive(:any)).and_return(twitter_client)
-  allow(twitter_client).to(receive(:update).with(:any))
+When /^I successfully run the command `(.*?)`$/ do |cmd|
+  allow(@tc).to(receive(:update))
 end
