@@ -2,19 +2,3 @@
 
 require 'ebooks/cli'
 Ebooks::CLI.start
-
-####! /usr/bin/env ruby
-###
-###$:.unshift(File.expand_path("../lib", File.dirname(__FILE__)))
-###
-###require 'ebooks'
-###
-###config = Ebooks.read_config_file
-###
-###if ARGV[0] == "generate"
-###  puts Ebooks.generate(config)
-###elsif ARGV[0] == "tweet"
-###  Ebooks.tweet(config)
-###else
-###  abort "Don't understand '#{ARGV[1]}'. Valid commands are: 'generate', 'tweet'."
-###end

@@ -1,5 +1,4 @@
-@config
-@corpus
+@config @corpus
 Feature: _ebooks
 
   Scenario: Show version
