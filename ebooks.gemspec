@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-rspec", "~> 4.5"
   spec.add_development_dependency "guard-cucumber", "~> 1.5"
   spec.add_development_dependency "aruba", "~> 0.6"
+  spec.add_development_dependency "timecop", "~> 0.7"
 end

@@ -1,8 +1,16 @@
-Given /^I authenticate to Twitter$/ do
-  @tc = double 'twitter_client'
-  allow(::Twitter::REST::Client).to(receive(:new)).and_return @tc
+When /^I generate a tweet$/ do
+  @g = Ebooks::Generator.new "#{$fixtures}/config/ebooks"
 end
 
-When /^I successfully run the command `(.*?)`$/ do |cmd|
-  allow(@tc).to(receive(:update))
+Then /^I should see "(.*?)"$/ do |output|
+  expect(@g.to_s).to match /#{output}/
+end
+
+When /^I send a tweet$/ do
+  tc = OpenStruct.new
+  expect(::Twitter::REST::Client).to(receive(:new)).and_return(tc)
+  expect(tc).to(receive(:update))
+
+  @g = Ebooks::Generator.new "#{$fixtures}/config/ebooks"
+  @g.tweet
 end

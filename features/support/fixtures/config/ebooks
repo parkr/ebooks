@@ -1,6 +1,6 @@
-:tweets_csv_path: 'cukes/ebooks/tweets.csv'
-:corpus_path:     'cukes/ebooks/markov_dict.txt'
-:dictionary_name: 'cukes/ebooks/dictionary'
+:tweets_csv_path: 'tmp/aruba/cukes/ebooks/tweets.csv'
+:corpus_path:     'tmp/aruba/cukes/ebooks/markov_dict.txt'
+:dictionary_name: 'tmp/aruba/cukes/ebooks/dictionary'
 :twitter:
   :consumer_key:       'key'
   :consumer_secret:    'secret'

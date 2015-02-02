@@ -7,9 +7,10 @@ Feature: _ebooks
     Then the output should contain "ebooks version "
 
   Scenario: Generate a tweet
-    When I successfully run `ebooks generate -c config/ebooks`
-    Then the output should contain "words"
+  #  When I successfully run `ebooks generate -c config/ebooks`
+    When I generate a tweet
+    Then I should see "words"
 
   Scenario: Tweet a tweet
-    Given I authenticate to Twitter
-    When I successfully run the command `ebooks tweet -c config/ebooks`
+    When I send a tweet
+  #  Then I should see something like "1970"
