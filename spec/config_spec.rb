@@ -13,5 +13,14 @@ module Ebooks
       expect(@c[:tweets_csv_path]).to eq 'tmp/aruba/cukes/ebooks/tweets.csv'
       expect(@c[:twitter][:consumer_key]).to eq 'key'
     end
+
+    it 'can be initialised from a hash' do
+      h = {
+        :tweets_csv_path => 'foo/bar.csv'
+      }
+
+      c = Config.from_hash h
+      expect(c[:tweets_csv_path]).to eq 'foo/bar.csv'
+    end
   end
 end

@@ -9,6 +9,13 @@ module Ebooks
       @markov = MarkovDictionary.new @config
     end
 
+    def configure_from_hash h
+      @config = Config.from_hash h.conf
+      @corpus = Corpora::TwitterCorpus.new @config
+      @corpus.generate
+      @markov = MarkovDictionary.new @config
+    end
+
     def generate
       @generate ||= @markov.generate_sentences
     end

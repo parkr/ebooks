@@ -13,3 +13,16 @@ require 'ebooks/twitter'
 require 'ebooks/markov_dictionary'
 require 'ebooks/generator'
 require 'ebooks/corpora/twitter_corpus'
+
+module Ebooks
+  def self.configuration overrides = {}
+    c = Config.from_hash overrides
+    c
+  end
+
+  def self.generate config
+    g = Generator.new
+    g.configure_from_hash config
+    g.generate
+  end
+end
