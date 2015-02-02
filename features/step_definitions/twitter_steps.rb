@@ -11,6 +11,10 @@ When /^I send a tweet$/ do
   expect(::Twitter::REST::Client).to(receive(:new)).and_return(tc)
   expect(tc).to(receive(:update))
 
-  @g = Ebooks::Generator.new "#{$fixtures}/config/ebooks"
-  @g.tweet
+  @t = Ebooks::Generator.new "#{$fixtures}/config/ebooks"
+  @t.tweet
+end
+
+Then /^I should see something like "(.*?)"$/  do |output|
+  expect(@t.twitter.to_s).to match /#{output}/
 end

@@ -1,11 +1,12 @@
 module Ebooks
-  class Twitter
-
-    def initialize config
+  class Twitter    
+    def initialize config, text
       @consumer_key        = config[:twitter][:consumer_key]
       @consumer_secret     = config[:twitter][:consumer_secret]
       @access_token        = config[:twitter][:oauth_token]
       @access_token_secret = config[:twitter][:oauth_token_secret]
+
+      @text = Ebooks.truncate text
     end
 
     def twitter_client
@@ -17,10 +18,12 @@ module Ebooks
       end
     end
 
-    def tweet(tweet_text)
-      tweet_text = Ebooks.truncate tweet_text.gsub('@', '')
-      p "#{Time.now}: #{tweet_text}"
-      twitter_client.update(tweet_text)
+    def tweet
+      twitter_client.update(@text)
+    end
+
+    def to_s
+      "#{Time.now}: #{@text}"
     end
   end
 

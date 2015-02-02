@@ -1,6 +1,6 @@
 module Ebooks
   class Generator
-    attr_accessor :dictionary
+    attr_accessor :twitter
 
     def initialize(config_file = '~/.ebooks')
       @config = Config.new config_file
@@ -14,7 +14,9 @@ module Ebooks
     end
 
     def tweet
-      Ebooks::Twitter.new(@config).tweet(generate)
+      @twitter = Ebooks::Twitter.new(@config, generate)
+      #puts t.to_s
+      @twitter.tweet
     end
 
     def to_s

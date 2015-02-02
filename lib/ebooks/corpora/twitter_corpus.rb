@@ -6,7 +6,6 @@ module Ebooks
       end
 
       def generate
-        puts @config[:corpus_path]
         File.exists?(@config[:corpus_path]) || begin
           FileUtils.mkdir_p File.dirname @config[:corpus_path]
           File.open(@config[:corpus_path], 'w') do |file|
