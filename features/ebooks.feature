@@ -7,7 +7,6 @@ Feature: _ebooks
     Then the output should contain "ebooks version "
 
   Scenario: Generate a tweet
-  #  When I successfully run `ebooks generate -c config/ebooks`
     When I generate a tweet
     Then I should see "words"
 
