@@ -14,7 +14,7 @@ module Ebooks
     end
 
     def tweet
-      Ebooks::Twitter.new(@config[:twitter]).tweet(generate_sentence)
+      Ebooks::Twitter.new(@config).tweet(generate)
     end
 
     def to_s

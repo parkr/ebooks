@@ -8,7 +8,6 @@ module Ebooks
         @overrides = YAML.load(File.open(conf_file))
         @conf = @conf.deep_merge @overrides
       end
-
     end
 
     def [] key

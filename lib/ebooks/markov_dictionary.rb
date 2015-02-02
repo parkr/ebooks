@@ -8,7 +8,6 @@ module Ebooks
         @markov = MarkyMarkov::Dictionary.new(@config[:dictionary_name])
         @markov.parse_file(@config[:corpus_path])
         @markov.save_dictionary!
-      #  @markov
       end
     end
 

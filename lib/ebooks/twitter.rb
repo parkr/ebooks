@@ -1,11 +1,11 @@
 module Ebooks
   class Twitter
 
-    def initialize(credentials = {})
-      @consumer_key        = credentials.fetch(:consumer_key)
-      @consumer_secret     = credentials.fetch(:consumer_secret)
-      @access_token        = credentials.fetch(:oauth_token)
-      @access_token_secret = credentials.fetch(:oauth_token_secret)
+    def initialize config
+      @consumer_key        = config[:twitter][:consumer_key]
+      @consumer_secret     = config[:twitter][:consumer_secret]
+      @access_token        = config[:twitter][:oauth_token]
+      @access_token_secret = config[:twitter][:oauth_token_secret]
     end
 
     def twitter_client

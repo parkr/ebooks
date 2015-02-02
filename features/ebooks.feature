@@ -10,6 +10,7 @@ Feature: _ebooks
     When I generate a tweet
     Then I should see "words"
 
+  @freezetime
   Scenario: Tweet a tweet
     When I send a tweet
   #  Then I should see something like "1970"

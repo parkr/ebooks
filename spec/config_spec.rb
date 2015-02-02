@@ -11,6 +11,7 @@ module Ebooks
     it 'can absorb overrides' do
       @c = Config.new File.join(File.dirname(__FILE__), '..', 'features/support/fixtures/config/ebooks')
       expect(@c[:tweets_csv_path]).to eq 'tmp/aruba/cukes/ebooks/tweets.csv'
+      expect(@c[:twitter][:consumer_key]).to eq 'key'
     end
   end
 end
