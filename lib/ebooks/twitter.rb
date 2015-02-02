@@ -24,8 +24,6 @@ module Ebooks
     end
   end
 
-  
-
   def self.truncate text, limit = 140
     return_text = ''
     text.split.each do |word|
