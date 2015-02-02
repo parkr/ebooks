@@ -13,4 +13,5 @@ Feature: _ebooks
   @freezetime
   Scenario: Tweet a tweet
     When I send a tweet
-    Then I should see something like "1970"
+    Then I should see something like "1970-01-01"
+    And I should see something like "words"
