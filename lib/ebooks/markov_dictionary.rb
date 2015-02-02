@@ -3,7 +3,7 @@ module Ebooks
     def initialize config
       @config = config
       if File.exists?(dictionary_path)
-        MarkyMarkov::Dictionary.new(@config[:dictionary_name])
+        @markov = MarkyMarkov::Dictionary.new(@config[:dictionary_name])
       else
         @markov = MarkyMarkov::Dictionary.new(@config[:dictionary_name])
         @markov.parse_file(@config[:corpus_path])

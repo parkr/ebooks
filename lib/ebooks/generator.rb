@@ -10,12 +10,11 @@ module Ebooks
     end
 
     def generate
-      @markov.generate_sentences
+      @generate ||= @markov.generate_sentences
     end
 
     def tweet
       @twitter = Ebooks::Twitter.new(@config, generate)
-      #puts t.to_s
       @twitter.tweet
     end
 
