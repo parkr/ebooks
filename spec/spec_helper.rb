@@ -1,4 +1,4 @@
-require 'ebooks/twitter'
+require 'ebooks'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

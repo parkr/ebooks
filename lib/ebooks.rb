@@ -10,6 +10,9 @@ $:.unshift(File.dirname(__FILE__))
 
 require 'ebooks/version'
 require 'ebooks/core_ext'
+require 'ebooks/config'
+require 'ebooks/twitter'
+require 'ebooks/corpora/twitter_corpus'
 
 module Ebooks
   autoload :Generator, 'ebooks/generator'
