@@ -11,6 +11,7 @@ module Ebooks
       it 'produces an output file' do
         @tc.generate
         expect(File).to exist 'spec/fixtures/ebooks/markov_dict.txt'
+        expect(File.readlines('spec/fixtures/ebooks/markov_dict.txt')[1]).to eq "rspec rspec rspec rspec\n"
       end
 
       it 'reads the tweet CSV file' do

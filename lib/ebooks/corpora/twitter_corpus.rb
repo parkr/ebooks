@@ -7,7 +7,11 @@ module Ebooks
 
       def generate
         FileUtils.mkdir_p File.dirname @config[:corpus_path]
-        FileUtils.touch @config[:corpus_path]
+        File.open(@config[:corpus_path], 'w') do |file|
+          csv.reverse_each do |row|
+            file.write("#{TwitterCorpus.filter row[5]}\n")
+          end
+        end
       end
 
       def csv
