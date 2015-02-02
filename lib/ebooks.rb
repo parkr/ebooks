@@ -12,6 +12,7 @@ require 'ebooks/version'
 require 'ebooks/core_ext'
 require 'ebooks/config'
 require 'ebooks/twitter'
+require 'ebooks/markov_dictionary'
 require 'ebooks/corpora/twitter_corpus'
 
 module Ebooks

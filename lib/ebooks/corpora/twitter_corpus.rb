@@ -6,10 +6,12 @@ module Ebooks
       end
 
       def generate
-        FileUtils.mkdir_p File.dirname @config[:corpus_path]
-        File.open(@config[:corpus_path], 'w') do |file|
-          csv.reverse_each do |row|
-            file.write("#{TwitterCorpus.filter row[5]}\n")
+        File.exists? @config[:corpus_path] || begin
+          FileUtils.mkdir_p File.dirname @config[:corpus_path]
+          File.open(@config[:corpus_path], 'w') do |file|
+            csv.reverse_each do |row|
+              file.write("#{TwitterCorpus.filter row[5]}\n")
+            end
           end
         end
       end
