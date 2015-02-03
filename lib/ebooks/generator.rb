@@ -4,16 +4,19 @@ module Ebooks
 
     def initialize(config_file = nil) #'~/.ebooks')
       @config = Config.new config_file
-      @corpus = Corpora::TwitterCorpus.new @config
+      configure @config
+    end
+
+    def configure config
+      @corpus = Corpora::TwitterCorpus.new config
       @corpus.generate
-      @markov = MarkovDictionary.new @config
+      @markov = MarkovDictionary.new config
+
+      @config = config
     end
 
     def configure_from_hash h
-      @config = Config.from_hash h.conf
-      @corpus = Corpora::TwitterCorpus.new @config
-      @corpus.generate
-      @markov = MarkovDictionary.new @config
+      configure Config.from_hash h.conf
     end
 
     def generate
