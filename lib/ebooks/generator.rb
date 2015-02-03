@@ -2,7 +2,7 @@ module Ebooks
   class Generator
     attr_accessor :twitter
 
-    def initialize(config_file = '~/.ebooks')
+    def initialize(config_file = nil) #'~/.ebooks')
       @config = Config.new config_file
       @corpus = Corpora::TwitterCorpus.new @config
       @corpus.generate
