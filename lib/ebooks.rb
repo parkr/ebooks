@@ -25,4 +25,10 @@ module Ebooks
     g.configure_from_hash config
     g.generate
   end
+
+  def self.tweet config
+    g = Generator.new
+    g.configure_from_hash config
+    g.tweet
+  end
 end
