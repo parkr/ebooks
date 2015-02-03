@@ -1,12 +1,15 @@
 module Ebooks
-  class Twitter    
-    def initialize config, text
+  class Twitter
+    def initialize config, text = nil
+      if config.keys.include? :consumer_key
+        config = {twitter: config}
+      end
       @consumer_key        = config[:twitter][:consumer_key]
       @consumer_secret     = config[:twitter][:consumer_secret]
       @access_token        = config[:twitter][:oauth_token]
       @access_token_secret = config[:twitter][:oauth_token_secret]
 
-      @text = Ebooks.truncate text
+      @text = Ebooks.truncate text if text
     end
 
     def twitter_client
@@ -18,7 +21,8 @@ module Ebooks
       end
     end
 
-    def tweet
+    def tweet text = nil
+      @text = text if text
       twitter_client.update(@text)
     end
 

@@ -12,6 +12,6 @@ Feature: API
     Then it should send a tweet
     And it should give me "words"
 
-#  Scenario: Just tweet a sentence
-#    Given I initialise the config
-#    And I do Ebooks::Twitter.new(config[:twitter]).tweet('This is not a Markov tweet')
+  Scenario: Just tweet a sentence
+    Given I initialise the config
+    And I do Ebooks::Twitter.new(config[:twitter]).tweet('This is not a Markov tweet')

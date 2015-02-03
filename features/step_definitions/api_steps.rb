@@ -43,3 +43,20 @@ end
 And /^it should give me "(.*?)"$/ do |text|
   expect(@t.to_s).to match /#{text}/
 end
+
+Given /^I do Ebooks::Twitter\.new\(config\[:twitter\]\)\.tweet\('This is not a Markov tweet'\)$/ do
+  config = {
+    :twitter => {
+      :consumer_key       =>    'ck',
+      :consumer_secret    =>    'cs',
+      :oauth_token        =>    'ot',
+      :oauth_token_secret => 'os'
+    }
+  }
+
+  tc = OpenStruct.new
+  expect(::Twitter::REST::Client).to(receive(:new)).and_return(tc)
+  expect(tc).to(receive(:update))
+
+  Ebooks::Twitter.new(config[:twitter]).tweet('This is not a Markov tweet')
+end
