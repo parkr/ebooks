@@ -34,5 +34,12 @@ And /^I do Ebooks\.tweet\(config\)$/ do
   expect(tc).to(receive(:update))
 
   @config = Ebooks.configuration(overrides)
-  @g = Ebooks.tweet @config
+  @t = Ebooks.tweet @config
+end
+
+Then /^it should send a tweet$/  do
+end
+
+And /^it should give me "(.*?)"$/ do |text|
+  expect(@t.to_s).to match /#{text}/
 end

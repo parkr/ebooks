@@ -30,5 +30,6 @@ module Ebooks
     g = Generator.new
     g.configure_from_hash config
     g.tweet
+    g.twitter
   end
 end
