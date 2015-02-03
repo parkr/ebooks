@@ -9,7 +9,6 @@ module Ebooks
 
     def configure config
       @corpus = Corpora::TwitterCorpus.new config
-      @corpus.generate
       @markov = MarkovDictionary.new config
 
       @config = config

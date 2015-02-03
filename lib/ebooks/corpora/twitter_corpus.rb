@@ -3,6 +3,7 @@ module Ebooks
     class TwitterCorpus
       def initialize config
         @config = config
+        generate
       end
 
       def generate
