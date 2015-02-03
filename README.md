@@ -7,7 +7,12 @@ Generate your own horse_ebooks by [@busterbenson][] ([original gist][], [blog po
 [blog post]: http://wayoftheduck.com/diy-horse-ebooks
 [@parkr]: https://parkermoo.re
 
-[![Build Status](https://travis-ci.org/parkr/ebooks.svg?branch=master)](https://travis-ci.org/parkr/ebooks)
+[![Build Status](http://img.shields.io/travis/parkr/ebooks.svg?style=flat-square)](https://travis-ci.org/parkr/ebooks)
+[![Dependency Status](http://img.shields.io/gemnasium/parkr/ebooks.svg?style=flat-square)](https://gemnasium.com/parkr/ebooks)
+[![Code Climate](http://img.shields.io/codeclimate/github/parkr/ebooks.svg?style=flat-square)](https://codeclimate.com/github/parkr/ebooks)
+[![Gem Version](http://img.shields.io/gem/v/ebooks.svg?style=flat-square)](https://rubygems.org/gems/ebooks)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://parkr.mit-license.org)
+[![Badges](http://img.shields.io/:badges-6/6-ff6799.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger)
 
 ## Installation
 
