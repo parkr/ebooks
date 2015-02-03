@@ -1,5 +1,4 @@
 Given /^I initialise the config$/ do
-
 end
 
 And /^I do Ebooks\.generate\(config\)$/ do
