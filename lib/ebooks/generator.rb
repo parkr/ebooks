@@ -2,7 +2,7 @@ module Ebooks
   class Generator
     attr_accessor :twitter
 
-    def initialize(config_file = nil) #'~/.ebooks')
+    def initialize(config_file = nil)
       @config = Config.new config_file
       configure @config
     end
