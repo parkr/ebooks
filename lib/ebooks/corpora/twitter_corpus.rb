@@ -22,7 +22,7 @@ module Ebooks
       end
 
       def self.filter tweet
-        self.compress_spaces self.strip_rts self.strip_usernames self.strip_newlines self.strip_links tweet
+        self.compress_spaces self.strip_rts self.strip_usernames self.strip_newlines self.strip_links self.strip_hashtags tweet
       end
 
       def self.strip_links tweet
@@ -39,6 +39,10 @@ module Ebooks
 
       def self.strip_rts tweet
         tweet.gsub(/[R|M]T/, '').strip
+      end
+
+      def self.strip_hashtags tweet
+        tweet.gsub(/#/, '').strip
       end
 
       def self.compress_spaces tweet

@@ -38,14 +38,18 @@ module Ebooks
           expect(TwitterCorpus.strip_rts 'RT This is a retweet').to eq 'This is a retweet'
         end
 
+        it 'removes hashtags' do
+          expect(TwitterCorpus.strip_hashtags 'This contains a #hashtag').to eq 'This contains a hashtag'
+        end
+
         it 'compresses spaces' do
           expect(TwitterCorpus.compress_spaces ' This    has extraneous   spaces').to eq 'This has extraneous spaces'
         end
 
         it 'applies all the filters' do
           tweet = 'RT Link from @pikesley to https://pikesley.org with
-          newlines '
-          expect(TwitterCorpus.filter tweet).to eq 'Link from to with newlines'
+          newlines and   spaces and a #hashtag'
+          expect(TwitterCorpus.filter tweet).to eq 'Link from to with newlines and spaces and a hashtag'
         end
       end
     end
