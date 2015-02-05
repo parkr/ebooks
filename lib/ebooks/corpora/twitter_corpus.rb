@@ -43,12 +43,35 @@ module Ebooks
           offender = mname.split('_')[1]
           tweet = args[0]
 
+          lookups = {
+            links: {
+              re: /(?:f|ht)tps?:\/[^\s]+/
+            },
+            newlines: {
+              re: /\n/,
+              sub: ' '
+            },
+            usernames: {
+              re: /@[a-z0-9_]+/i
+            },
+            rts: {
+              re: /[R|M]T/
+            },
+            hashtags: {
+              re: /#/
+            },
+            spaces: {
+              re: /\s+/,
+              sub: ' '
+            }
+          }
+
           case offender
             when 'links'
               tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
 
             when 'newlines'
-              tweet.gsub(/\n/,' ').gsub(/\s+/, ' ').strip
+              tweet.gsub(/\n/,' ').strip
 
             when 'usernames'
               tweet.gsub(/@[a-z0-9_]+/i, '').strip
