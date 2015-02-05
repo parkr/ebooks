@@ -25,27 +25,27 @@ module Ebooks
         self.compress_spaces self.strip_rts self.strip_usernames self.strip_newlines self.strip_links self.strip_hashtags tweet
       end
 
-      def self.strip_links tweet
+      def self.excise_links tweet
         tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
       end
 
-      def self.strip_newlines tweet
+      def self.excise_newlines tweet
         tweet.gsub(/\n/,' ').gsub(/\s+/, ' ')
       end
 
-      def self.strip_usernames tweet
+      def self.excise_usernames tweet
         tweet.gsub(/@[a-z0-9_]+/i, '').strip
       end
 
-      def self.strip_rts tweet
+      def self.excise_rts tweet
         tweet.gsub(/[R|M]T/, '').strip
       end
 
-      def self.strip_hashtags tweet
+      def self.excise_hashtags tweet
         tweet.gsub(/#/, '').strip
       end
 
-      def self.compress_spaces tweet
+      def self.excise_spaces tweet
         tweet.gsub(/\s+/, ' ').strip
       end
     end

@@ -22,28 +22,28 @@ module Ebooks
 
       context 'filter the tweet' do
         it 'strips links' do
-          expect(TwitterCorpus.strip_links 'Link to http://whatever.com').to eq 'Link to'
+          expect(TwitterCorpus.excise_links 'Link to http://whatever.com').to eq 'Link to'
         end
 
         it 'strips newlines' do
-          expect(TwitterCorpus.strip_newlines 'This
+          expect(TwitterCorpus.excise_newlines 'This
           has a newline').to eq 'This has a newline'
         end
 
         it 'strips usernames' do
-          expect(TwitterCorpus.strip_usernames 'Sam @pikesley').to eq 'Sam'
+          expect(TwitterCorpus.excise_usernames 'Sam @pikesley').to eq 'Sam'
         end
 
         it 'strips RTs' do
-          expect(TwitterCorpus.strip_rts 'RT This is a retweet').to eq 'This is a retweet'
+          expect(TwitterCorpus.excise_rts 'RT This is a retweet').to eq 'This is a retweet'
         end
 
         it 'removes hashtags' do
-          expect(TwitterCorpus.strip_hashtags 'This contains a #hashtag').to eq 'This contains a hashtag'
+          expect(TwitterCorpus.excise_hashtags 'This contains a #hashtag').to eq 'This contains a hashtag'
         end
 
         it 'compresses spaces' do
-          expect(TwitterCorpus.compress_spaces ' This    has extraneous   spaces').to eq 'This has extraneous spaces'
+          expect(TwitterCorpus.excise_spaces ' This    has extraneous   spaces').to eq 'This has extraneous spaces'
         end
 
         it 'applies all the filters' do
