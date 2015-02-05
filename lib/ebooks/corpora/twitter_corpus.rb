@@ -67,7 +67,7 @@ module Ebooks
           }
 
           search  = lookups[offender][:re]
-          replace = lookups[offender][:sub] ? lookups[offender][:sub] : ''
+          replace = (lookups[offender][:sub] && lookups[offender][:sub]) || ''
 
           tweet.gsub(search, replace).strip
         end
