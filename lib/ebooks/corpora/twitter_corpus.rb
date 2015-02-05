@@ -22,7 +22,18 @@ module Ebooks
       end
 
       def self.filter tweet
-        self.compress_spaces self.strip_rts self.strip_usernames self.strip_newlines self.strip_links self.strip_hashtags tweet
+        %w{
+          rts
+          usernames
+          newlines
+          links
+          hashtags
+          spaces
+        }.each do |offender|
+          tweet = self.send("excise_#{offender}", tweet)
+        end
+
+        tweet
       end
 
       def self.excise_links tweet
