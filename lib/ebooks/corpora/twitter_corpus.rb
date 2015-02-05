@@ -36,28 +36,33 @@ module Ebooks
         tweet
       end
 
-      def self.excise_links tweet
-        tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
-      end
+      def self.method_missing method_name, *args
+        mname = method_name.to_s
 
-      def self.excise_newlines tweet
-        tweet.gsub(/\n/,' ').gsub(/\s+/, ' ')
-      end
+        if mname =~ /excise_/
+          offender = mname.split('_')[1]
+          tweet = args[0]
 
-      def self.excise_usernames tweet
-        tweet.gsub(/@[a-z0-9_]+/i, '').strip
-      end
+          case offender
+            when 'links'
+              tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
 
-      def self.excise_rts tweet
-        tweet.gsub(/[R|M]T/, '').strip
-      end
+            when 'newlines'
+              tweet.gsub(/\n/,' ').gsub(/\s+/, ' ').strip
 
-      def self.excise_hashtags tweet
-        tweet.gsub(/#/, '').strip
-      end
+            when 'usernames'
+              tweet.gsub(/@[a-z0-9_]+/i, '').strip
 
-      def self.excise_spaces tweet
-        tweet.gsub(/\s+/, ' ').strip
+            when 'rts'
+              tweet.gsub(/[R|M]T/, '').strip
+
+            when 'hashtags'
+              tweet.gsub(/#/, '').strip
+
+            when 'spaces'
+              tweet.gsub(/\s+/, ' ').strip
+          end
+        end
       end
     end
   end
