@@ -40,7 +40,7 @@ module Ebooks
         mname = method_name.to_s
 
         if mname =~ /excise_/
-          offender = mname.split('_')[1]
+          offender = mname.split('_')[1].to_sym
           tweet = args[0]
 
           lookups = {
@@ -66,25 +66,31 @@ module Ebooks
             }
           }
 
-          case offender
-            when 'links'
-              tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
+          search  = lookups[offender][:re]
+          replace = ''
+          replace = lookups[offender][:sub] if lookups[offender][:sub]
 
-            when 'newlines'
-              tweet.gsub(/\n/,' ').strip
+          tweet.gsub(search, replace).strip
 
-            when 'usernames'
-              tweet.gsub(/@[a-z0-9_]+/i, '').strip
+  #        case offender
+  #          when 'links'
+  #            tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
 
-            when 'rts'
-              tweet.gsub(/[R|M]T/, '').strip
+  #          when 'newlines'
+  #            tweet.gsub(/\n/,' ').strip
 
-            when 'hashtags'
-              tweet.gsub(/#/, '').strip
+  #          when 'usernames'
+  #            tweet.gsub(/@[a-z0-9_]+/i, '').strip
 
-            when 'spaces'
-              tweet.gsub(/\s+/, ' ').strip
-          end
+  #          when 'rts'
+  #            tweet.gsub(/[R|M]T/, '').strip
+
+  #          when 'hashtags'
+  #            tweet.gsub(/#/, '').strip
+
+  #          when 'spaces'
+  #            tweet.gsub(/\s+/, ' ').strip
+  #        end
         end
       end
     end
