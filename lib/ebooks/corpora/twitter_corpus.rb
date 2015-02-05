@@ -67,30 +67,9 @@ module Ebooks
           }
 
           search  = lookups[offender][:re]
-          replace = ''
-          replace = lookups[offender][:sub] if lookups[offender][:sub]
+          replace = lookups[offender][:sub] ? lookups[offender][:sub] : ''
 
           tweet.gsub(search, replace).strip
-
-  #        case offender
-  #          when 'links'
-  #            tweet.gsub(/(?:f|ht)tps?:\/[^\s]+/, '').strip
-
-  #          when 'newlines'
-  #            tweet.gsub(/\n/,' ').strip
-
-  #          when 'usernames'
-  #            tweet.gsub(/@[a-z0-9_]+/i, '').strip
-
-  #          when 'rts'
-  #            tweet.gsub(/[R|M]T/, '').strip
-
-  #          when 'hashtags'
-  #            tweet.gsub(/#/, '').strip
-
-  #          when 'spaces'
-  #            tweet.gsub(/\s+/, ' ').strip
-  #        end
         end
       end
     end
