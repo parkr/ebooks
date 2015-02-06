@@ -1,6 +1,15 @@
 module Ebooks
   module Corpora
     class TwitterCorpus
+      MATCHERS = {
+        links:     /(?:f|ht)tps?:\/[^\s]+/,
+        newlines:  /\n/,
+        usernames: /@[a-z0-9_]+/i,
+        rts:       /[R|M]T/,
+        hashtags:  /#/,
+        spaces:    /\s+/
+      }
+
       def initialize config
         @config = config
         generate
@@ -22,14 +31,7 @@ module Ebooks
       end
 
       def self.filter tweet
-        %w{
-          rts
-          usernames
-          newlines
-          links
-          hashtags
-          spaces
-        }.each do |offender|
+        MATCHERS.keys.each do |offender|
           tweet = self.send("excise_#{offender}", tweet)
         end
 
@@ -43,33 +45,7 @@ module Ebooks
           offender = mname.split('_')[1].to_sym
           tweet = args[0]
 
-          lookups = {
-            links: {
-              re: /(?:f|ht)tps?:\/[^\s]+/
-            },
-            newlines: {
-              re: /\n/,
-              sub: ' '
-            },
-            usernames: {
-              re: /@[a-z0-9_]+/i
-            },
-            rts: {
-              re: /[R|M]T/
-            },
-            hashtags: {
-              re: /#/
-            },
-            spaces: {
-              re: /\s+/,
-              sub: ' '
-            }
-          }
-
-          search  = lookups[offender][:re]
-          replace = (lookups[offender][:sub] && lookups[offender][:sub]) || ''
-
-          tweet.gsub(search, replace).strip
+          tweet.gsub(MATCHERS[offender], ' ').gsub(/\s+/, ' ').strip
         end
       end
     end

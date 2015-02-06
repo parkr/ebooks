@@ -27,7 +27,7 @@ module Ebooks
 
         it 'strips newlines' do
           expect(TwitterCorpus.excise_newlines 'This
-has a newline').to eq 'This has a newline'
+          has a newline').to eq 'This has a newline'
         end
 
         it 'strips usernames' do
