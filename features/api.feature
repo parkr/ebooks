@@ -15,3 +15,4 @@ Feature: API
   Scenario: Just tweet a sentence
     Given I initialise the config
     And I do Ebooks::Twitter.new(config[:twitter]).tweet('This is not a Markov tweet')
+    Then it should not explode in my face

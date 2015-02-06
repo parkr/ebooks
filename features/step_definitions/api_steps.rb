@@ -58,5 +58,8 @@ Given /^I do Ebooks::Twitter\.new\(config\[:twitter\]\)\.tweet\('This is not a M
   expect(::Twitter::REST::Client).to(receive(:new)).and_return(tc)
   expect(tc).to(receive(:update))
 
-  Ebooks::Twitter.new(config[:twitter]).tweet('This is not a Markov tweet')
+  @m = Ebooks::Twitter.new(config[:twitter]).tweet('This is not a Markov tweet')
+end
+
+Then /^it should not explode in my face$/ do
 end
