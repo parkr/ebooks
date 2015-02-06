@@ -42,14 +42,18 @@ module Ebooks
           expect(TwitterCorpus.excise_hashtags 'This contains a #hashtag').to eq 'This contains a hashtag'
         end
 
+        it 'removes punctuation' do
+          expect(TwitterCorpus.excise_punctuation 'This, contains a bunch - of "punctuation;". It should: not').to eq 'This contains a bunch of punctuation It should not'
+        end
+
         it 'compresses spaces' do
           expect(TwitterCorpus.excise_spaces ' This    has extraneous   spaces').to eq 'This has extraneous spaces'
         end
 
         it 'applies all the filters' do
           tweet = 'RT Link from @pikesley to https://pikesley.org with
-          newlines and   spaces and a #hashtag'
-          expect(TwitterCorpus.filter tweet).to eq 'Link from to with newlines and spaces and a hashtag'
+          newlines and   spaces and a #hashtag. And, punctuation'
+          expect(TwitterCorpus.filter tweet).to eq 'Link from to with newlines and spaces and a hashtag And punctuation'
         end
       end
     end

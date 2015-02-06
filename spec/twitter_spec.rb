@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Ebooks
   describe Twitter do
-    it 'trunacates text correctly' do
+    it 'truncates text correctly' do
       c = Config.new File.join(File.dirname(__FILE__), 'fixtures/config/ebooks')
 
       t = Twitter.new c

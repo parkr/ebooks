@@ -7,6 +7,7 @@ module Ebooks
         usernames: /@[a-z0-9_]+/i,
         rts:       /[R|M]T/,
         hashtags:  /#/,
+        punctuation: /[",-;\.:]/,
         spaces:    /\s+/
       }
 
