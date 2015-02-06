@@ -1,0 +1,7 @@
+:links:       !ruby/regexp /(?:f|ht)tps?:\/[^\s]+/
+:newlines:    !ruby/regexp /\n/
+:usernames:   !ruby/regexp /@[a-z0-9_]+/i
+:rts:         !ruby/regexp /[R|M]T/
+:hashtags:    !ruby/regexp /#/
+:punctuation: !ruby/regexp /[",-;\.:]/
+:spaces:      !ruby/regexp /\s+/

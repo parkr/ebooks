@@ -1,15 +1,7 @@
 module Ebooks
   module Corpora
     class TwitterCorpus
-      MATCHERS = {
-        links:       /(?:f|ht)tps?:\/[^\s]+/,
-        newlines:    /\n/,
-        usernames:   /@[a-z0-9_]+/i,
-        rts:         /[R|M]T/,
-        hashtags:    /#/,
-        punctuation: /[",-;\.:]/,
-        spaces:      /\s+/
-      }
+      FILTERS = YAML.load File.open File.join File.dirname(__FILE__), '..',                   '..', '..', 'config/filters.yaml'
 
       def initialize config
         @config = config
@@ -32,7 +24,7 @@ module Ebooks
       end
 
       def self.filter tweet
-        MATCHERS.keys.each do |offender|
+        FILTERS.keys.each do |offender|
           tweet = self.send("excise_#{offender}", tweet)
         end
 
@@ -46,7 +38,7 @@ module Ebooks
           offender = mname.split('_')[1].to_sym
           tweet = args[0]
 
-          tweet.gsub(MATCHERS[offender], ' ').gsub(/\s+/, ' ').strip
+          tweet.gsub(FILTERS[offender], ' ').gsub(/\s+/, ' ').strip
         end
       end
     end
