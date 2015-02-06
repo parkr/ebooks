@@ -2,13 +2,13 @@ module Ebooks
   module Corpora
     class TwitterCorpus
       MATCHERS = {
-        links:     /(?:f|ht)tps?:\/[^\s]+/,
-        newlines:  /\n/,
-        usernames: /@[a-z0-9_]+/i,
-        rts:       /[R|M]T/,
-        hashtags:  /#/,
+        links:       /(?:f|ht)tps?:\/[^\s]+/,
+        newlines:    /\n/,
+        usernames:   /@[a-z0-9_]+/i,
+        rts:         /[R|M]T/,
+        hashtags:    /#/,
         punctuation: /[",-;\.:]/,
-        spaces:    /\s+/
+        spaces:      /\s+/
       }
 
       def initialize config
