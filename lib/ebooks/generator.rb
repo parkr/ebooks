@@ -23,7 +23,8 @@ module Ebooks
     end
 
     def tweet
-      @twitter = Ebooks::Twitter.new(@config, generate)
+      @twitter = Ebooks::Twitter.new(@config)
+      @twitter.text = generate
       @twitter.tweet
     end
 

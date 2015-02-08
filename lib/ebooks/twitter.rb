@@ -2,7 +2,7 @@ module Ebooks
   class Twitter
     attr_reader :text
 
-    def initialize config, text = nil
+    def initialize config
       if config.keys.include? :consumer_key
         config = {twitter: config}
       end
@@ -11,7 +11,7 @@ module Ebooks
       @access_token        = config[:twitter][:oauth_token]
       @access_token_secret = config[:twitter][:oauth_token_secret]
 
-      @text = text if text
+    #  @text = text #if text
     end
 
     def twitter_client
