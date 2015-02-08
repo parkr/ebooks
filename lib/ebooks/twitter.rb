@@ -1,25 +1,21 @@
 module Ebooks
   class Twitter
-    attr_reader :text
+    attr_reader :text, :config
 
     def initialize config
-      if config.keys.include? :consumer_key
-        config = {twitter: config}
+      if config.keys.include? :twitter
+        @config = config[:twitter]
+      else
+        @config = config
       end
-      @consumer_key        = config[:twitter][:consumer_key]
-      @consumer_secret     = config[:twitter][:consumer_secret]
-      @access_token        = config[:twitter][:oauth_token]
-      @access_token_secret = config[:twitter][:oauth_token_secret]
-
-    #  @text = text #if text
     end
 
     def twitter_client
       ::Twitter::REST::Client.new do |config|
-        config.consumer_key        = @consumer_key
-        config.consumer_secret     = @consumer_secret
-        config.access_token        = @access_token
-        config.access_token_secret = @access_token_secret
+        config.consumer_key        = @config[:consumer_key]
+        config.consumer_secret     = @config[:consumer_secret]
+        config.access_token        = @config[:oauth_token]
+        config.access_token_secret = @config[:oauth_token_secret]
       end
     end
 

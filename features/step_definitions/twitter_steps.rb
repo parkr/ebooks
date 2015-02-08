@@ -8,7 +8,9 @@ end
 
 When /^I send a tweet$/ do
   tc = OpenStruct.new
-  expect(::Twitter::REST::Client).to(receive(:new)).and_return(tc)
+  expect(::Twitter::REST::Client).to(receive(:new)) do |args|
+
+  end.and_return(tc)
   expect(tc).to(receive(:update))
 
   @t = Ebooks::Generator.new "#{$fixtures}/config/ebooks"

@@ -24,5 +24,12 @@ module Ebooks
 
       expect(t.text).to eq 'Rspec rspec rspec'
     end
+
+    it 'sets up its config correctly' do
+      c = Config.new File.join(File.dirname(__FILE__), 'fixtures/config/ebooks')
+      t = Twitter.new c
+
+      expect(t.config[:consumer_key]).to eq 'key'
+    end
   end
 end
