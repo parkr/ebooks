@@ -1,26 +1,35 @@
 module Ebooks
   class Twitter
+    attr_reader :text, :config
 
-    def initialize(credentials = {})
-      @consumer_key        = credentials.fetch(:consumer_key)
-      @consumer_secret     = credentials.fetch(:consumer_secret)
-      @access_token        = credentials.fetch(:oauth_token)
-      @access_token_secret = credentials.fetch(:oauth_token_secret)
+    def initialize config
+      if config.keys.include? :twitter
+        @config = config[:twitter]
+      else
+        @config = config
+      end
     end
 
     def twitter_client
       ::Twitter::REST::Client.new do |config|
-        config.consumer_key        = @consumer_key
-        config.consumer_secret     = @consumer_secret
-        config.access_token        = @access_token
-        config.access_token_secret = @access_token_secret
+        config.consumer_key        = @config[:consumer_key]
+        config.consumer_secret     = @config[:consumer_secret]
+        config.access_token        = @config[:oauth_token]
+        config.access_token_secret = @config[:oauth_token_secret]
       end
     end
 
-    def tweet(tweet_text)
-      tweet_text = Ebooks.truncate tweet_text.gsub('@', '')
-      p "#{Time.now}: #{tweet_text}"
-      twitter_client.update(tweet_text)
+    def text= text
+      @text = Ebooks.truncate text
+    end
+
+    def tweet text = nil
+      @text = text if text
+      twitter_client.update(@text)
+    end
+
+    def to_s
+      "#{Time.now}: #{@text}"
     end
   end
 

@@ -1,4 +1,7 @@
-require 'ebooks/twitter'
+require 'ebooks'
+require 'digest'
+require 'coveralls'
+Coveralls.wear_merged!
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

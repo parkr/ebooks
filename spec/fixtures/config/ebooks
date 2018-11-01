@@ -1,0 +1,5 @@
+:tweets_csv_path: 'spec/fixtures/ebooks/tweets.csv'
+:corpus_path:     'spec/fixtures/ebooks/markov_dict.txt'
+:dictionary_name: 'spec/fixtures/ebooks/dictionary'
+:twitter:
+  :consumer_key:  'key'

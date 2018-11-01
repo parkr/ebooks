@@ -15,7 +15,3 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-
-dictionary.mmd
-markov_dict.txt
-tweets.csv

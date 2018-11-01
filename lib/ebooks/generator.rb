@@ -1,62 +1,35 @@
 module Ebooks
   class Generator
+    attr_accessor :twitter
 
-    attr_accessor :dictionary
-
-    def initialize(config)
-      @tweets_csv_path = config[:tweets_csv_path]
-      @corpus_path     = config[:corpus_path]
-      build_corpus
-      @dictionary_name = config[:dictionary_name]
-      @dictionary      = build_dictionary
+    def initialize(config_file = nil)
+      @config = Config.new config_file
+      configure @config
     end
 
-    def generate_twitter_corpus
-      # Go to Twitter.com -> Settings -> Download Archive.
-      # This tweets.csv file is in the top directory. Put it in the same directory as this script.
-      csv_text = CSV.read(@tweets_csv_path)
+    def configure config
+      @corpus = Corpora::TwitterCorpus.new config
+      @markov = MarkovDictionary.new config
 
-      # Create a new clean file of text that acts as the seed for your Markov chains
-      File.open(@corpus_path, 'w') do |file|
-        csv_text.reverse_each do |row|
-          tweet_text = row[5]
-                        .gsub(/(?:f|ht)tps?:\/[^\s]+/, '') # Strip links
-                        .gsub(/\n/,' ') # Strip new lines
-                        .gsub(/@[a-z0-9_]+/i, '') # Strip usernames
-                        .gsub(/[R|M]T/, '') # Strip RTs
-          # Save the text
-          file.write("#{tweet_text}\n")
-        end
-      end
+      @config = config
     end
 
-    def generate_sentence
-      # Run when you want to generate a new Markov tweet
-      dictionary.generate_n_sentences(2).split(/\#\</).first.chomp.chop
+    def configure_from_hash h
+      configure Config.from_hash h.conf
     end
 
-    private
-
-    def build_corpus
-      unless File.exists?(@corpus_path)
-        generate_twitter_corpus
-      end
+    def generate
+      @generate ||= @markov.generate_sentences
     end
 
-    def build_dictionary
-      if File.exists?(dictionary_path)
-        MarkyMarkov::Dictionary.new(@dictionary_name)
-      else
-        markov = MarkyMarkov::Dictionary.new(@dictionary_name)
-        markov.parse_file(@corpus_path)
-        markov.save_dictionary!
-        markov
-      end
+    def tweet
+      @twitter = Ebooks::Twitter.new(@config)
+      @twitter.text = generate
+      @twitter.tweet
     end
 
-    def dictionary_path
-      "#{@dictionary_name}.mmd"
+    def to_s
+      generate
     end
-
   end
 end
